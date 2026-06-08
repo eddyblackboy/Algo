@@ -1,24 +1,31 @@
+algorithme Phrase
 variables phrase : chaine 
 variable i, longueur, nMots, nVoyelles : entier 
-longueur <- longueur(phrase)
-i <- 1
-nMots <- 0
-nVoyelles <- 0
 
-for i = 1 to longueur do 
-    if phrase[i] = " " then 
+debut
+    lire phrase
+
+    longueur <- 0
+    nMots <- 0
+    nVoyelles <- 0 
+
+    for i = 1 to longueur(phrase) do 
+        longueur <- longueur + 1
+
+        if phrase[i] = " " then 
+            nMots <- nMots + 1
+        end if
+        if phrase[i] = "a" or phrase[i] = "e" or phrase[i] = "i" or phrase[i] = "o" or phrase[i] = "u" then 
+            nVoyelles <- nVoyelles + 1
+        end if
+    end for
+
+    if longueur > 0 then 
         nMots <- nMots + 1
     end if
-    
-    if phrase[i] = "a" or phrase[i] = "e" or phrase[i] = "i" or phrase[i] = "o" or phrase[i] = "u" then 
-        nVoyelles <- nVoyelles + 1
-    end if
-end for
 
-if longueur > 0 and phrase[longueur] = "." then 
-    nMots <- nMots + 1
-end if
-
-afficher "Nombre de mots : ", nMots
-afficher "Nombre de voyelles : ", nVoyelles
+    afficher "Longueur de la phrase : ", longueur
+    afficher "Nombre de mots : ", nMots
+    afficher "Nombre de voyelles : ", nVoyelles
+fin
 
