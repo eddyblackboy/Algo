@@ -1,0 +1,112 @@
+Algorithme SommeDistincts(A, n, B, m)
+	somme ← 0
+
+	pour i de 1 à n faire
+		trouvé ← faux
+		pour j de 1 à m faire
+			si A[i] = B[j] alors
+				trouvé ← vrai
+				sortir
+			fin si
+		fin pour
+		si trouvé = faux alors
+			somme ← somme + A[i]
+		fin si
+	fin pour
+
+	pour j de 1 à m faire
+		trouvé ← faux
+		pour i de 1 à n faire
+			si B[j] = A[i] alors
+				trouvé ← vrai
+				sortir
+			fin si
+		fin pour
+		si trouvé = faux alors
+			somme ← somme + B[j]
+		fin si
+	fin pour
+
+	retourner somme
+FinAlgorithme
+
+Algorithme VerifierOrthogonalite_Proc(n, P, d)
+	epsilon ← 1e-9
+	pour i de 1 à n faire
+		déclarer ps : réel
+		appeler dot_product(ps, P[i].v1, P[i].v2, d)
+		si |ps| ≤ epsilon alors
+			afficher "Couple", i, ": orthogonal (ps =", ps, ")"
+		sinon
+			afficher "Couple", i, ": non orthogonal (ps =", ps, ")"
+		PROBLEMES_TRAITES: 2 (Problème1; Problème2 a: procédure, b: fonction)
+
+		Algorithme P1_SommeDistincts(A, n, B, m)
+			st ← 0
+			pour i de 1 à n faire
+				f ← faux
+				pour j de 1 à m faire
+					si A[i] = B[j] alors
+						f ← vrai
+						sortir
+					fin si
+				fin pour
+				si f = faux alors
+					st ← st + A[i]
+				fin si
+			fin pour
+			pour j de 1 à m faire
+				f ← faux
+				pour i de 1 à n faire
+					si B[j] = A[i] alors
+						f ← vrai
+						sortir
+					fin si
+				fin pour
+				si f = faux alors
+					st ← st + B[j]
+				fin si
+			fin pour
+			retourner st
+		FinAlgorithme
+
+		Procédure P2a_dot_product(var ps : réel, v1 : tableau de réel, v2 : tableau de réel, d : entier)
+			ps ← 0.0
+			pour k de 1 à d faire
+				ps ← ps + v1[k] * v2[k]
+			fin pour
+		FinProcédure
+
+		Algorithme P2a_VerifierOrthogonalite_Proc(n, P, d)
+			epsilon ← 1e-9
+			pour i de 1 à n faire
+				déclarer ps : réel
+				appeler P2a_dot_product(ps, P[i].v1, P[i].v2, d)
+				si |ps| ≤ epsilon alors
+					afficher "Couple", i, ": orthogonal (ps =", ps, ")"
+				sinon
+					afficher "Couple", i, ": non orthogonal (ps =", ps, ")"
+				fin si
+			fin pour
+		FinAlgorithme
+
+		Fonction P2b_dot_product(v1 : tableau de réel, v2 : tableau de réel, d : entier) : réel
+			s ← 0.0
+			pour k de 1 à d faire
+				s ← s + v1[k] * v2[k]
+			fin pour
+			retourner s
+		FinFonction
+
+		Algorithme P2b_VerifierOrthogonalite_Func(n, P, d)
+			epsilon ← 1e-9
+			pour i de 1 à n faire
+				ps ← P2b_dot_product(P[i].v1, P[i].v2, d)
+				si |ps| ≤ epsilon alors
+					afficher "Couple", i, ": orthogonal (ps =", ps, ")"
+				sinon
+					afficher "Couple", i, ": non orthogonal (ps =", ps, ")"
+				fin si
+			fin pour
+		FinAlgorithme
+// ==========================
